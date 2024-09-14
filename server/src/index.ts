@@ -19,7 +19,7 @@ import RedisClient from './lib/redis-client';
 export default class OurApp extends App {
   protected baseDir = path.join(__dirname, '.');
 
-  protected scanGlobs = ['./**/*.(j|t)s', '!./**/*.d.ts'];
+  protected scanGlobs = ['./**/*.(j|t)s', '!./**/*.d.ts', '!./jobs/**/*'];
 
   protected hostname = '127.0.0.1';
 

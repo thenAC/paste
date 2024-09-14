@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "pnpm i --frozen-lockfile",
     "dev": "cross-env NODE_ENV=development tsnd --respawn --rs --transpile-only -P tsconfig.json --unhandled-rejections=warn --inspect=127.0.0.1:9232 src/index.ts",
+    "dev:job:clear": "cross-env NODE_ENV=development tsnd --respawn --rs --transpile-only -P tsconfig.json --unhandled-rejections=warn --inspect=127.0.0.1:9233 src/jobs/clear.ts",
     "build": "rimraf app && tsc -p tsconfig.json && copyfiles -u1 \"src/**/*.{js,lua}\" app",
     "start": "cross-env NODE_ENV=production node --unhandled-rejections=warn app/index.js",
     "deploy": "cross-env NODE_ENV=production pm2 pm2.config.js",
@@ -27,6 +28,7 @@
     "class-validator": "^0.13.2",
     "cos-nodejs-sdk-v5": "^2.14.6",
     "crypto-random-string": "^3.3.1",
+    "dayjs": "^1.11.13",
     "fs-extra": "^9.1.0",
     "ioredis": "^5.4.1",
     "ip": "^2.0.1",
@@ -37,6 +39,7 @@
     "lru-cache": "^11.0.1",
     "module-alias": "^2.2.2",
     "mongoose": "^8.6.2",
+    "p-queue": "^6.6.2",
     "pm2": "^5.1.2",
     "statuses": "^2.0.1",
     "urlcat-fork": "^2.0.5"

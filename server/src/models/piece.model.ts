@@ -25,6 +25,10 @@ export const pieceSchema = new mongoose.Schema(
     expireAt: {
       type: Date,
     },
+    ip: {
+      type: String,
+      required: true,
+    },
     deleted: {
       type: Boolean,
       default: false,

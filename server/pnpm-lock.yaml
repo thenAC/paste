@@ -38,6 +38,9 @@ dependencies:
   crypto-random-string:
     specifier: ^3.3.1
     version: 3.3.1
+  dayjs:
+    specifier: ^1.11.13
+    version: 1.11.13
   fs-extra:
     specifier: ^9.1.0
     version: 9.1.0
@@ -68,6 +71,9 @@ dependencies:
   mongoose:
     specifier: ^8.6.2
     version: 8.6.2
+  p-queue:
+    specifier: ^6.6.2
+    version: 6.6.2
   pm2:
     specifier: ^5.1.2
     version: 5.3.0
@@ -1478,8 +1484,8 @@ packages:
       whatwg-url: 8.7.0
     dev: false
 
-  /dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+  /dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
     dev: false
 
   /dayjs@1.8.36:
@@ -1746,6 +1752,10 @@ packages:
 
   /eventemitter2@6.4.9:
     resolution: {integrity: sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==}
+    dev: false
+
+  /eventemitter3@4.0.7:
+    resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
     dev: false
 
   /express-session@1.11.3:
@@ -2930,6 +2940,11 @@ packages:
     resolution: {integrity: sha1-Kv3oTQPlC5qO3EROMGEKcCle37Q=}
     dev: false
 
+  /p-finally@1.0.0:
+    resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
+    engines: {node: '>=4'}
+    dev: false
+
   /p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
     engines: {node: '>=6'}
@@ -2942,6 +2957,21 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       p-limit: 2.3.0
+    dev: false
+
+  /p-queue@6.6.2:
+    resolution: {integrity: sha512-RwFpb72c/BhQLEXIZ5K2e+AhgNVmIejGlTgiB9MzZ0e93GRvqZ7uSi0dvRF7/XIXDeNkra2fNHBxTyPDGySpjQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      eventemitter3: 4.0.7
+      p-timeout: 3.2.0
+    dev: false
+
+  /p-timeout@3.2.0:
+    resolution: {integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==}
+    engines: {node: '>=8'}
+    dependencies:
+      p-finally: 1.0.0
     dev: false
 
   /p-try@2.2.0:
@@ -3124,7 +3154,7 @@ packages:
       cli-tableau: 2.0.1
       commander: 2.15.1
       croner: 4.1.97
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       debug: 4.3.4
       enquirer: 2.3.6
       eventemitter2: 5.0.1

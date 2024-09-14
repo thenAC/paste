@@ -50,7 +50,7 @@ export default class PieceController {
       }
     }
 
-    const created = await Piece.create([{ key, author, bytes, lang, ttl, expireAt }]);
+    const created = await Piece.create([{ key, author, bytes, lang, ttl, expireAt, ip: this.ctx.ip }]);
     const pieceFileContent = {
       key,
       lang,
