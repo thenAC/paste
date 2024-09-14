@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["es6"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "app",
+    "baseUrl": ".",
+    "paths": {
+      "@server/*": ["./src/*"],
+      "@root/*": ["../*"],
+    },
+    "types": ["node"],
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "app"]
+}

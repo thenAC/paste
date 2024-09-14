@@ -1,0 +1,194 @@
+{
+  // Place your workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  "bwcx:controller": {
+    "prefix": ["@Controller"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a controller",
+    "body": [
+      "import { Controller, InjectCtx, RequestContext } from 'bwcx-ljsm';",
+      "import { Inject } from 'bwcx-core';",
+      "",
+      "@Controller(${2})",
+      "export default class ${1:Your}Controller {",
+      "  public constructor(",
+      "    @InjectCtx()",
+      "    private readonly ctx: RequestContext,",
+      "  ) {}",
+      "",
+      "  ${0:/** routes */}",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:route": {
+    "prefix": ["@Route"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for adding a route method",
+    "body": ["@${2:Get}()", "public async ${1:}(): Promise<void> {", "  ${0:/** code */}", "}"]
+  },
+  "bwcx:interface": {
+    "prefix": ["@Interface"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing an interface",
+    "body": [
+      "export const ${1:Interface} = Symbol('${1:Interface}');",
+      "export interface ${1:Interface} {",
+      "  ${0:/** code */}",
+      "}"
+    ]
+  },
+  "bwcx:service": {
+    "prefix": ["@Service"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a service",
+    "body": [
+      "import { Service, InjectCtx, RequestContext } from 'bwcx-ljsm';",
+      "import { Inject } from 'bwcx-core';",
+      "",
+      "@Service(${2:Interface})",
+      "export default class ${1:Your}Service implements ${2:Interface} {",
+      "  public constructor(",
+      "    @InjectCtx()",
+      "    private readonly ctx: RequestContext,",
+      "  ) {}",
+      "",
+      "  ${0:/** methods */}",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:inject": {
+    "prefix": ["@Inject"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for adding an injection",
+    "body": ["@Inject(${3:})", "private readonly ${1:name}: ${2:type}"]
+  },
+  "bwcx:provide": {
+    "prefix": ["@Provide"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a provider class",
+    "body": [
+      "import { Provide } from 'bwcx-core';",
+      "",
+      "@Provide()",
+      "export default class ${1:Provider} {",
+      "${2:  public constructor(\n  ) {\\}\n\n}  ${0:/** code */}",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:middleware": {
+    "prefix": ["@Middleware"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a middleware",
+    "body": [
+      "import { Middleware, IBwcxMiddleware, RequestContext, MiddlewareNext } from 'bwcx-ljsm';",
+      "",
+      "@Middleware()",
+      "export default class ${1:Your}Middleware implements IBwcxMiddleware {",
+      "  public async use(ctx: RequestContext, next: MiddlewareNext) {",
+      "    ${0:/** methods */}",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:guard": {
+    "prefix": ["@Guard"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a guard",
+    "body": [
+      "import { Guard, IBwcxGuard, RequestContext } from 'bwcx-ljsm';",
+      "",
+      "@Guard()",
+      "export default class ${1:Your}Guard implements IBwcxGuard {",
+      "  public async canPass(ctx: RequestContext) {",
+      "    ${0:return true;}",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:responseHandler": {
+    "prefix": ["@ResponseHandler"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a response handler",
+    "body": [
+      "import { ResponseHandler, IBwcxResponseHandler, RequestContext } from 'bwcx-ljsm';",
+      "",
+      "@ResponseHandler()",
+      "export default class ${1:Your}ResponseHandler implements IBwcxResponseHandler {",
+      "  public async handle(response: ${2:unknown}, ctx: RequestContext) {",
+      "    ${0:return response;}",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:config": {
+    "prefix": ["@Config"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing a config",
+    "body": [
+      "import { Config } from 'bwcx-ljsm';",
+      "",
+      "@Config()",
+      "export default class ${1:Your}Config {",
+      "  ${0:/** code */}",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:exception": {
+    "prefix": ["@Exception"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing an exception",
+    "body": [
+      "import { Exception } from 'bwcx-ljsm';",
+      "",
+      "export default class ${1:Your}Exception extends Exception {",
+      "  public constructor() {",
+      "    super('');",
+      "    this.name = '${1:Your}Exception';",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:exceptionHandler": {
+    "prefix": ["@ExceptionHandler"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for initializing an exception handler",
+    "body": [
+      "import { ExceptionHandler, IBwcxExceptionHandler, RequestContext } from 'bwcx-ljsm';",
+      "",
+      "@ExceptionHandler(${2:Exception})",
+      "export default class ${1:Your}ExceptionHandler implements IBwcxExceptionHandler {",
+      "  public async catch(error: ${2:Exception}, ctx: RequestContext) {",
+      "    ${0:/** code */}",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+  "bwcx:dto": {
+    "prefix": ["@DTO"],
+    "scope": "typescript",
+    "description": "[bwcx] Snippet for adding a route-relative DTO",
+    "body": [
+      "export class ${1:YourRoute}ReqDTO {",
+      "  ${2:/** code */}",
+      "}",
+      "",
+      "export class ${1:YourRoute}RespDTO {",
+      "  ${3:/** code */}",
+      "}",
+      ""
+    ]
+  }
+}

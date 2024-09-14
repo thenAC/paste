@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "svelte.svelte-vscode"
+  ],
+  "unwantedRecommendations": [
+    "eg2.tslint",
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ]
+}
