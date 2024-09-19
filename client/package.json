@@ -5,10 +5,11 @@
   "author": "bLue",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "vite build && npm run postprocess",
+    "preview": "vite preview --outDir build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "postprocess": "node ./scripts/upload-cos.cjs"
   },
   "dependencies": {
     "axios": "^1.7.7",
@@ -24,6 +25,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@types/lodash-es": "^4.17.12",
     "autoprefixer": "^10.4.20",
+    "cos-nodejs-sdk-v5": "^2.14.6",
     "daisyui": "^4.12.10",
     "less": "^4.2.0",
     "postcss": "^8.4.47",
