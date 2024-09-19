@@ -10,7 +10,7 @@
     "init": "pnpm i --frozen-lockfile",
     "dev": "cross-env NODE_ENV=development tsnd --respawn --rs --transpile-only -P tsconfig.json --unhandled-rejections=warn --inspect=127.0.0.1:9232 src/index.ts",
     "dev:job:clear": "cross-env NODE_ENV=development tsnd --respawn --rs --transpile-only -P tsconfig.json --unhandled-rejections=warn --inspect=127.0.0.1:9233 src/jobs/clear.ts",
-    "build": "rimraf app && tsc -p tsconfig.json && copyfiles -u1 \"src/**/*.{js,lua}\" app",
+    "build": "rimraf app && tsc -p tsconfig.json && copyfiles -u1 \"src/**/*.{js,lua}\" app/server/src && copyfiles \"{package.json,pnpm-lock.yaml,pm2.config.js}\" app",
     "start": "cross-env NODE_ENV=production node --unhandled-rejections=warn app/index.js",
     "deploy": "cross-env NODE_ENV=production pm2 pm2.config.js",
     "deploy:foreground": "cross-env NODE_ENV=production pm2-runtime pm2.config.js"
@@ -50,7 +50,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/ip": "^1.1.3",
     "@types/koa-favicon": "^2.0.21",
-    "@types/lodash": "^4.17.7",
+    "@types/lodash": "~4.14.202",
     "@types/node": "^16.18.69",
     "@types/statuses": "^2.0.4",
     "copyfiles": "^2.4.1",

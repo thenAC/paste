@@ -1,7 +1,7 @@
 const apps = [
   {
     name: 'paste-server',
-    script: `./app/index.js`,
+    script: `./server/src/index.js`,
     log_date_format: 'YYYY-MM-DD HH:mm:ss',
     exec_mode: 'cluster',
     max_memory_restart: '256M',
@@ -18,7 +18,7 @@ const apps = [
   },
   {
     name: 'paste-job-clear',
-    script: `./app/jobs/clear.js`,
+    script: `./server/src/jobs/clear.js`,
     log_date_format: 'YYYY-MM-DD HH:mm:ss',
     exec_mode: 'fork',
     max_memory_restart: '128M',

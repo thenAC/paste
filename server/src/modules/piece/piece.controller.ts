@@ -8,7 +8,7 @@ import { AddPieceReqDTO, AddPieceRespDTO } from './piece.dto';
 import MiscUtils from '@server/utils/misc.util';
 import QCloudCosUtils from '@server/utils/qcloud-cos.util';
 import { RateLimitIp } from '@server/middlewares/rate-limit.middleware';
-import IndexConfig from '../../../../common/configs/index.json';
+import IndexConfig from '@root/common/configs/index.json';
 
 @ApiController()
 export default class PieceController {
