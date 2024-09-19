@@ -22,7 +22,7 @@ export default class StatisticsController {
     if (cached) {
       return cached;
     }
-    const statisticsRes = await Statistics.findOne({});
+    const statisticsRes = await Statistics.findOne({ key: 'main'});
     const statistics = {
       totalCount: (statisticsRes?.totalCount || 0).toString(),
       totalBytes: (statisticsRes?.totalBytes || 0).toString(),

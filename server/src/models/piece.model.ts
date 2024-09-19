@@ -5,6 +5,7 @@ export const pieceSchema = new mongoose.Schema(
     key: {
       type: String,
       required: true,
+      unique: true,
     },
     author: {
       type: Number,
