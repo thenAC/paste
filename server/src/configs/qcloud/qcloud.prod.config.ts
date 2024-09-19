@@ -8,6 +8,6 @@ export default class QCloudConfigProd extends QCloudConfig {
     secretKey: process.env.COS_SECRET_KEY,
     bucket: process.env.COS_BUCKET,
     region: process.env.COS_REGION,
-    basePath: process.env.COS_BASE_PATH || 'piece/',
+    basePath: process.env.COS_BASE_PATH || 'paste/',
   };
 }
