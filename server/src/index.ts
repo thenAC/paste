@@ -22,9 +22,9 @@ export default class OurApp extends App {
 
   protected scanGlobs = ['./**/*.(j|t)s', '!./**/*.d.ts', '!./jobs/**/*'];
 
-  protected hostname = '127.0.0.1';
+  protected hostname = process.env.HOST || '127.0.0.1';
 
-  protected port = 3031;
+  protected port = parseInt(process.env.PORT) || 3031;
 
   protected exitTimeout = 5000;
 
