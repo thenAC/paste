@@ -1,0 +1,65 @@
+version: '3'
+services:
+  server:
+    image: algoux/thenac-paste:latest
+    ports:
+      - 3031:3031
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: "redis"
+      REDIS_PASS: "your_auth_pass"
+      MONGO_HOST: "mongo"
+      MONGO_USER: "root"
+      MONGO_PASS: "your_auth_pass"
+      COS_SECRET_ID: "your_secret_id"
+      COS_SECRET_KEY: "your_secret_key"
+      COS_BUCKET: "your_bucket"
+      COS_REGION: "your_region"
+      HOST: "0.0.0.0"
+      NODE_WORKERS: 1
+    volumes:
+      - /data/thenac-paste/server/logs:/root/.pm2/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+    networks:
+      - thenac-paste-network
+
+  redis:
+    image: redis:latest
+    command: redis-server --requirepass your_auth_pass
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - /data/thenac-paste/redis:/data
+    networks:
+      - thenac-paste-network
+
+  mongo:
+    image: mongo:latest
+    command: mongod --auth
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: your_auth_pass
+      MONGO_INITDB_DATABASE: thenac_paste
+    volumes:
+      - /data/thenac-paste/mongo:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/thenac_paste --quiet
+      interval: 2s
+      timeout: 5s
+      retries: 5
+    networks:
+      - thenac-paste-network
+
+networks:
+  thenac-paste-network:
+    driver: bridge
