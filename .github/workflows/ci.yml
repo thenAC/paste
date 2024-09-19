@@ -26,4 +26,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/thenac_paste:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/thenac-paste:latest
