@@ -23,7 +23,6 @@ export function getPiece(key: string, options: RequestInit = {}): Promise<Piece>
     method: 'GET',
     ...options,
   }).then((res) => {
-    console.log('res', res);
     if (res.ok) {
       return res.json();
     } else if (res.status >= 404) {

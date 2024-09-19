@@ -1,4 +1,6 @@
 <script>
+  // @ts-ignore
+  import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
   import '../app.css';
   import logo from '$lib/assets/logo.svg';
   import avatar_bLue from '$lib/assets/avatar-bLue-sm.png';
@@ -62,3 +64,5 @@
     </div>
   </aside>
 </footer>
+
+<GoogleAnalytics properties={['G-SWVEWB390N']}></GoogleAnalytics>

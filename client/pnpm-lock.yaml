@@ -19,6 +19,9 @@ dependencies:
     version: 4.17.21
 
 devDependencies:
+  '@beyonk/svelte-google-analytics':
+    specifier: ^2.6.4
+    version: 2.6.4
   '@sveltejs/adapter-auto':
     specifier: ^3.0.0
     version: 3.0.0(@sveltejs/kit@2.0.0)
@@ -81,6 +84,16 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
+    dev: true
+
+  /@beyonk/async-script-loader@2.3.0:
+    resolution: {integrity: sha512-/vbDM5j8OHmtnWLx87sef0T/jGWVvZV6ILm3QFLpfRwSg0KmhQoAZnOT4XSaUL/EjOC9eMzgX5qtS2jztKzY2A==}
+    dev: true
+
+  /@beyonk/svelte-google-analytics@2.6.4:
+    resolution: {integrity: sha512-m2P1fs36qObCLtIZ9edLC62RHLrGVknaKuE4uEBQk5+Jfy1apa7DOIT0Jq1PvScyrndV62FvyjUUrWwrXjYbmw==}
+    dependencies:
+      '@beyonk/async-script-loader': 2.3.0
     dev: true
 
   /@cloudflare/kv-asset-handler@0.3.4:
