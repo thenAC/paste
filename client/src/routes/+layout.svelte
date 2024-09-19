@@ -69,7 +69,7 @@
     <div class="flex items-center">
       <span class="ml-1">
         {#if statistics}
-          <span  class="mr-3">Total pieces: {statistics.totalCount}</span>·<span class="ml-3">Total size: {filesize(statistics.totalBytes)}</span>
+          <span  class="mr-2">Total pieces: {statistics.totalCount}</span>·<span class="ml-2">Total size: {filesize(statistics.totalBytes)}</span>
         {:else}
           <span>·</span>
         {/if}
