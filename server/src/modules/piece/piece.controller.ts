@@ -1,5 +1,6 @@
 import { Contract, Data, InjectCtx, Post, RequestContext } from 'bwcx-ljsm';
 import { Inject } from 'bwcx-core';
+import _ from 'lodash';
 import { ApiController } from '@server/decorators';
 import { Piece } from '@server/models/piece.model';
 import { Statistics } from '@server/models/statistics.model';
@@ -7,6 +8,7 @@ import { AddPieceReqDTO, AddPieceRespDTO } from './piece.dto';
 import MiscUtils from '@server/utils/misc.util';
 import QCloudCosUtils from '@server/utils/qcloud-cos.util';
 import { RateLimitIp } from '@server/middlewares/rate-limit.middleware';
+import IndexConfig from '../../../../common/configs/index.json';
 
 @ApiController()
 export default class PieceController {
@@ -23,9 +25,13 @@ export default class PieceController {
 
   @Post()
   @Contract(AddPieceReqDTO, AddPieceRespDTO)
-  @RateLimitIp(2, 60)
+  @RateLimitIp(10, 60)
   async addPiece(@Data() data: AddPieceReqDTO): Promise<AddPieceRespDTO> {
-    const { code, lang, ttl } = data;
+    const { code, lang, ttl, rel } = data;
+    console.log('[piece.addPiece] Req:', {
+      ...data,
+      code: `String(${code.length})`,
+    });
     let key: string;
     const author = 0; // tourist
     const bytes = code.length;
@@ -50,11 +56,13 @@ export default class PieceController {
       }
     }
 
-    const created = await Piece.create([{ key, author, bytes, lang, ttl, expireAt, ip: this.ctx.ip }]);
+    const created = await Piece.create([{ key, author, bytes, lang, ttl, rel, expireAt, ip: this.ctx.ip }]);
+    console.log('[piece.addPiece] Created:', created[0]._id, key);
     const pieceFileContent = {
       key,
       lang,
       author,
+      rel,
       expireAt,
       createdAt: created[0].createdAt,
       code,
@@ -75,6 +83,7 @@ export default class PieceController {
 
     return {
       key,
+      url: `${IndexConfig.siteHost}/s/${key}`,
     };
   }
 }

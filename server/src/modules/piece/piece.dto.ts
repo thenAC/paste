@@ -1,5 +1,5 @@
 import { FromBody } from 'bwcx-common';
-import { IsString, MinLength, MaxLength, IsNotEmpty, IsIn, IsInt, Min } from 'class-validator';
+import { IsString, MinLength, MaxLength, IsIn, IsInt, IsOptional, IsUrl } from 'class-validator';
 import pieceConfig from '@root/common/configs/piece.json';
 
 export class AddPieceReqDTO {
@@ -17,10 +17,17 @@ export class AddPieceReqDTO {
 
   @FromBody()
   @IsInt()
-  @IsIn(pieceConfig.ttlOptions)
+  @IsIn(pieceConfig.ttlOptions.map((ttl) => ttl.value))
   ttl: number;
+
+  @FromBody()
+  @IsOptional()
+  @IsString()
+  @IsUrl()
+  rel?: string;
 }
 
 export class AddPieceRespDTO {
   key: string;
+  url: string;
 }

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@koa/cors':
+    specifier: ^5.0.0
+    version: 5.0.0
   axios:
     specifier: ^0.26.1
     version: 0.26.1
@@ -62,6 +65,9 @@ dependencies:
   koa-static:
     specifier: ^5.0.0
     version: 5.0.0
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   lru-cache:
     specifier: ^11.0.1
     version: 11.0.1
@@ -94,6 +100,9 @@ devDependencies:
   '@types/koa-favicon':
     specifier: ^2.0.21
     version: 2.1.3
+  '@types/lodash':
+    specifier: ^4.17.7
+    version: 4.17.7
   '@types/node':
     specifier: ^16.18.69
     version: 16.18.69
@@ -391,6 +400,13 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
+  /@koa/cors@5.0.0:
+    resolution: {integrity: sha512-x/iUDjcS90W69PryLDIMgFyV21YLTnG9zOpPXS7Bkt2b8AsY3zZsIpOLBkYr9fBcF3HbkKaER5hOBZLfpLgYNw==}
+    engines: {node: '>= 14.0.0'}
+    dependencies:
+      vary: 1.1.2
+    dev: false
+
   /@koa/multer@3.0.2(multer@1.4.4):
     resolution: {integrity: sha512-Q6WfPpE06mJWyZD1fzxM6zWywaoo+zocAn2YA9QYz4RsecoASr1h/kSzG0c5seDpFVKCMZM9raEfuM7XfqbRLw==}
     engines: {node: '>= 8'}
@@ -626,9 +642,8 @@ packages:
       '@types/koa-compose': 3.2.8
       '@types/node': 16.18.69
 
-  /@types/lodash@4.14.202:
-    resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
-    dev: false
+  /@types/lodash@4.17.7:
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
 
   /@types/mime@1.3.5:
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
@@ -1038,7 +1053,7 @@ packages:
       '@types/koa': 2.13.12
       '@types/koa-bodyparser': 4.3.12
       '@types/koa-router': 7.4.8
-      '@types/lodash': 4.14.202
+      '@types/lodash': 4.17.7
       '@types/multer': 1.4.11
       async-exit-hook-improved: 2.0.3
       bwcx-common: 1.0.1
@@ -4012,7 +4027,7 @@ packages:
     dev: false
 
   /vary@1.1.2:
-    resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
+    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
     dev: false
 

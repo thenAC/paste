@@ -1,11 +1,29 @@
 {
-  "maxCodeLength": 2097152,
+  "maxCodeLength": 1048576,
   "ttlOptions": [
-    -1,
-    600,
-    3600,
-    86400,
-    604800,
-    2592000
+    {
+      "value": -1,
+      "label": "Forever"
+    },
+    {
+      "value": 600,
+      "label": "10 minutes"
+    },
+    {
+      "value": 3600,
+      "label": "1 hour"
+    },
+    {
+      "value": 86400,
+      "label": "1 day"
+    },
+    {
+      "value": 604800,
+      "label": "1 week"
+    },
+    {
+      "value": 2592000,
+      "label": "1 month"
+    }
   ]
 }

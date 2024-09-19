@@ -22,6 +22,9 @@ export const pieceSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    rel: {
+      type: String,
+    },
     expireAt: {
       type: Date,
     },

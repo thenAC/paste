@@ -10,6 +10,7 @@ import { getDependency } from 'bwcx-core';
 import type { IAppConfig } from 'bwcx-ljsm';
 import { App } from 'bwcx-ljsm';
 import path from 'path';
+import cors from '@koa/cors';
 import UtilityHeaderMiddleware from './middlewares/utility-header.middleware';
 import LoggerMiddleware from './middlewares/logger.middleware';
 import DefaultResponseHandler from '@server/response-handlers/default.response-handler';
@@ -52,7 +53,9 @@ export default class OurApp extends App {
     super();
   }
 
-  protected async beforeWire() {}
+  protected async beforeWire() {
+    this.instance.use(cors());
+  }
 
   protected async afterWire() {
     this.instance.on('error', (error, ctx) => {
