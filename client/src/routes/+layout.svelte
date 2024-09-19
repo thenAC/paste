@@ -1,9 +1,26 @@
-<script>
+<script lang="ts">
+  import { onMount } from 'svelte';
   // @ts-ignore
   import { GoogleAnalytics } from '@beyonk/svelte-google-analytics';
+  import { filesize } from 'filesize';
   import '../app.css';
   import logo from '$lib/assets/logo.svg';
   import avatar_bLue from '$lib/assets/avatar-bLue-sm.png';
+  import { getStatistics } from '$lib/api/statistics';
+
+  let statistics: { totalCount: string; totalBytes: string } | undefined;
+
+  const fetchStatistics = async () => {
+    try {
+      statistics = await getStatistics();
+    } catch (e: any) {
+      console.error('Failed to fetch statistics:', e);
+    }
+  };
+
+  onMount(async () => {
+    fetchStatistics();
+  });
 </script>
 
 <header>
@@ -49,6 +66,15 @@
 
 <footer class="footer footer-center bg-base-300 text-base-content p-4 select-none">
   <aside>
+    <div class="flex items-center">
+      <span class="ml-1">
+        {#if statistics}
+          <span  class="mr-3">Total pieces: {statistics.totalCount}</span>·<span class="ml-3">Total size: {filesize(statistics.totalBytes)}</span>
+        {:else}
+          <span>·</span>
+        {/if}
+      </span>
+    </div>
     <div class="flex items-center">
       © {new Date().getFullYear()} · Developed by
       <a

@@ -11,6 +11,9 @@ dependencies:
   dayjs:
     specifier: ^1.11.13
     version: 1.11.13
+  filesize:
+    specifier: ^10.1.6
+    version: 10.1.6
   highlight.js:
     specifier: ^11.10.0
     version: 11.10.0
@@ -1775,6 +1778,11 @@ packages:
       picomatch:
         optional: true
     dev: true
+
+  /filesize@10.1.6:
+    resolution: {integrity: sha512-sJslQKU2uM33qH5nqewAwVB2QgR6w1aMNsYUp3aN5rMRyXEwJGmZvaWzeJFNTOXWlHQyBFCWrdj3fV/fsTOX8w==}
+    engines: {node: '>= 10.4.0'}
+    dev: false
 
   /fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
