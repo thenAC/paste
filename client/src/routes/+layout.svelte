@@ -52,7 +52,7 @@
           </div>
           <ul tabindex="-1" class="menu dropdown-content bg-base-200 rounded-box z-[1] mt-2 w-24 p-2 shadow">
             <li><a href="https://github.com/thenAC" target="_blank">GitHub</a></li>
-            <li><a href="/docs" target="_blank">Docs</a></li>
+            <li><a href="https://docs.of.paste.then.ac" target="_blank">Docs</a></li>
           </ul>
         </div>
       </div>
