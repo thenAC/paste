@@ -121,6 +121,8 @@
 
     .code-line {
       overflow: auto;
+      margin-right: 1rem;
+
       pre::before {
         margin-right: 0;
       }
