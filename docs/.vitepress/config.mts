@@ -43,6 +43,11 @@ export default defineConfig({
 
     externalLinkIcon: true,
 
+    darkModeSwitchLabel: '切换主题',
+    lightModeSwitchTitle: '切换到明亮主题',
+    darkModeSwitchTitle: '切换到暗黑主题',
+    sidebarMenuLabel: '菜单',
+    returnToTopLabel: '返回顶部',
     outlineTitle: '目录',
     docFooter: {
       prev: '上一篇',
