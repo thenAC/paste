@@ -17,6 +17,7 @@ export default class ValidationExceptionHandler implements IBwcxExceptionHandler
       success: false,
       code: ErrCode.IllegalParameters,
       msg: error.source === 'req' ? errCodeConfigs[ErrCode.IllegalParameters] : '响应数据校验失败',
+      data: error.errors,
     };
   }
 }
