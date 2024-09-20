@@ -35,7 +35,7 @@
     <div class="flex-none">
       <div class="hidden md:block">
         <a role="button" class="btn btn-ghost" href="https://github.com/thenAC" target="_blank">GitHub</a>
-        <a role="button" class="btn btn-ghost" href="/docs" target="_blank">Docs</a>
+        <a role="button" class="btn btn-ghost" href="https://docs.of.paste.then.ac" target="_blank">Docs</a>
       </div>
       <div class="md:hidden">
         <div class="dropdown dropdown-end">
