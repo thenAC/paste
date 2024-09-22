@@ -83,6 +83,11 @@
         Expires at: {data.expireAt ? dayjs(data.expireAt).format('YYYY-MM-DD HH:mm:ss Z') : 'Never'}
       </div>
       <div class="text-sm opacity-65 select-none">Language: {displayLang}</div>
+      {#if data.rel}
+        <div class="text-sm opacity-80 select-none">
+          →<a role="button" class="btn btn-ghost btn-sm" href={data.rel} target="_blank" rel="noopener noreferrer">{data.rel}</a>
+        </div>
+      {/if}
       {#if !copied}
         <button class="btn btn-success mt-4" on:click={copyCode}>Copy!</button>
       {:else}
