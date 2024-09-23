@@ -70,7 +70,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-center px-4 pt-16 md:pt-24 xl:pt-32 pb-16">
-  <h2 class="select-none">Piece<span class="kbd kbd-sm ml-2 select-text">{key}</span></h2>
+  <h2 class="select-none">Piece<code class="kbd kbd-sm ml-2 select-text">{key}</code></h2>
   {#if isLoading}
     <div class="loading loading-spinner loading-lg mt-4"></div>
   {/if}
@@ -84,8 +84,14 @@
       </div>
       <div class="text-sm opacity-65 select-none">Language: {displayLang}</div>
       {#if data.rel}
-        <div class="text-sm opacity-80 select-none">
-          →<a role="button" class="btn btn-ghost btn-sm" href={data.rel} target="_blank" rel="noopener noreferrer">{data.rel}</a>
+        <div class="text-sm opacity-80 select-none max-w-full whitespace-nowrap flex items-center">
+          <span>→</span><a
+            role="button"
+            class="btn btn-ghost btn-sm flex-1 overflow-auto block content-center"
+            href={data.rel}
+            target="_blank"
+            rel="noopener noreferrer">{data.rel}</a
+          >
         </div>
       {/if}
       {#if !copied}
@@ -97,12 +103,12 @@
         <div class="flex flex-row">
           <div class="line-number">
             {#each codeblocks as line, i}
-              <pre data-prefix={i + 1}><code></code></pre>
+              <pre data-prefix={i + 1} class="text-sm"><code></code></pre>
             {/each}
           </div>
           <div class="code-line">
             {#each codeblocks as line, i}
-              <pre><code>{@html line}</code></pre>
+              <pre class="text-sm"><code>{@html line}</code></pre>
             {/each}
           </div>
         </div>
@@ -132,7 +138,7 @@
         margin-right: 0;
       }
       pre {
-        min-height: 1.5rem;
+        min-height: 1.25rem;
       }
     }
   }

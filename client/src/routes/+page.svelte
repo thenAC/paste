@@ -249,7 +249,7 @@
           </svg>
           <span
             >Your new piece: <a href={`/s/${result.key}`} class="link link-primary select-text"
-              >{location.origin}/s/{result.key}</a
+              >{location.origin}/s/<code>{result.key}</code></a
             ></span
           >
         </div>
