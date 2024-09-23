@@ -55,6 +55,14 @@ export default class OurApp extends App {
 
   protected async beforeWire() {
     this.instance.use(cors());
+    this.instance.use(async (ctx, next) => {
+      ctx.startAt = new Date();
+      try {
+        await next();
+      } finally {
+        ctx.info(`${ctx.status} - ua: ${ctx.get('User-Agent')} - referer: ${ctx.get('Referer')}`);
+      }
+    });
   }
 
   protected async afterWire() {

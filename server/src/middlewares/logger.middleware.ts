@@ -17,6 +17,9 @@ export default class LoggerMiddleware implements IBwcxMiddleware {
 
   private wrapMessages(ctx: RequestContext, ...messages: any[]) {
     const { method, url } = ctx;
-    return [`[${this.miscUtils.getIp(ctx)} ${method.toUpperCase()} ${url}]`, ...messages];
+    return [
+      `[${this.miscUtils.getIp(ctx)} ${method.toUpperCase()} ${url}](${Date.now() - ctx.startAt.getTime()}ms)`,
+      ...messages,
+    ];
   }
 }

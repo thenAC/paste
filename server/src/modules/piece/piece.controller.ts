@@ -28,7 +28,7 @@ export default class PieceController {
   @RateLimitIp(10, 60)
   async addPiece(@Data() data: AddPieceReqDTO): Promise<AddPieceRespDTO> {
     const { code, lang, ttl, rel } = data;
-    console.log('[piece.addPiece] Req:', {
+    this.ctx.info('[piece.addPiece] Req:', {
       ...data,
       code: `String(${code.length})`,
     });
@@ -57,7 +57,7 @@ export default class PieceController {
     }
 
     const created = await Piece.create([{ key, author, bytes, lang, ttl, rel, expireAt, ip: this.ctx.ip }]);
-    console.log('[piece.addPiece] Created:', created[0]._id, key);
+    this.ctx.info('[piece.addPiece] Created:', created[0]._id, key);
     const pieceFileContent = {
       key,
       lang,

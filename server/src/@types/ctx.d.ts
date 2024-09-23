@@ -6,5 +6,6 @@ declare module 'bwcx-ljsm' {
     info: (...messages: any[]) => void;
     warn: (...messages: any[]) => void;
     error: (...messages: any[]) => void;
+    startAt: Date;
   }
 }
