@@ -1,18 +1,15 @@
-import { Contract, Data, Get, InjectCtx, Post, RequestContext } from 'bwcx-ljsm';
+import { Contract, Data, InjectCtx, Post, RequestContext } from 'bwcx-ljsm';
 import { Inject } from 'bwcx-core';
 import _ from 'lodash';
 import { ApiController } from '@server/decorators';
 import { Piece } from '@server/models/piece.model';
 import { Statistics } from '@server/models/statistics.model';
-import { AddPieceReqDTO, AddPieceRespDTO, GetPieceRelMetaReqDTO, GetPieceRelMetaRespDTO } from './piece.dto';
+import { AddPieceReqDTO, AddPieceRespDTO } from './piece.dto';
 import MiscUtils from '@server/utils/misc.util';
 import QCloudCosUtils from '@server/utils/qcloud-cos.util';
 import { RateLimitIp } from '@server/middlewares/rate-limit.middleware';
 import IndexConfig from '@root/common/configs/index.json';
 import RelMetaUtils from '@server/utils/rel-meta/rel-meta.util';
-import { IRelMeta } from '@server/interfaces/rel-meta';
-import LogicException from '@server/exceptions/logic.exception';
-import { ErrCode } from '@server/enums/err-code.enum';
 
 @ApiController()
 export default class PieceController {
@@ -91,26 +88,6 @@ export default class PieceController {
     return {
       key,
       url: `${IndexConfig.siteHost}/s/${key}`,
-    };
-  }
-
-  @Get()
-  @Contract(GetPieceRelMetaReqDTO, GetPieceRelMetaRespDTO)
-  @RateLimitIp(30, 60)
-  async getPieceRelMeta(@Data() data: GetPieceRelMetaReqDTO): Promise<GetPieceRelMetaRespDTO> {
-    const relLinks = data.relLinks.split(',');
-    const res: (IRelMeta | null)[] = [];
-    for (const relLink of relLinks) {
-      let urlObject: URL;
-      try {
-        urlObject = new URL(relLink);
-      } catch (e) {
-        throw new LogicException(ErrCode.IllegalParameters);
-      }
-      res.push(await this.relMetaUtils.autoDetect(relLink, urlObject));
-    }
-    return {
-      relMetaList: res,
     };
   }
 }

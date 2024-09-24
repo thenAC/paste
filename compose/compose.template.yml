@@ -4,6 +4,11 @@ services:
     image: algoux/thenac-paste:latest
     ports:
       - 3031:3031
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3031/api/checkHealth"]
+      interval: 3s
+      timeout: 5s
+      retries: 3
     restart: unless-stopped
     environment:
       REDIS_HOST: "redis"
