@@ -1,6 +1,7 @@
-import { FromBody } from 'bwcx-common';
-import { IsString, MinLength, MaxLength, IsIn, IsInt, IsOptional, IsUrl } from 'class-validator';
+import { FromBody, FromQuery } from 'bwcx-common';
+import { IsString, MinLength, MaxLength, IsIn, IsInt, IsOptional, IsUrl, IsArray, IsNotEmpty } from 'class-validator';
 import pieceConfig from '@root/common/configs/piece.json';
+import { IRelMeta } from '@server/interfaces/rel-meta';
 
 export class AddPieceReqDTO {
   @FromBody()
@@ -25,9 +26,29 @@ export class AddPieceReqDTO {
   @IsString()
   @IsUrl()
   rel?: string;
+
+  @FromBody()
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  @IsUrl({ each: true })
+  relLinks?: string[];
 }
 
 export class AddPieceRespDTO {
   key: string;
   url: string;
+}
+
+export class GetPieceRelMetaReqDTO {
+  /** rel links (comma separated). */
+  @FromQuery()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(2048)
+  relLinks: string;
+}
+
+export class GetPieceRelMetaRespDTO {
+  relMetaList: (IRelMeta | null)[];
 }
