@@ -8,6 +8,7 @@ export interface Piece {
   code: string;
   author: number;
   rel?: string;
+  relLinks?: string[];
   expireAt: string; // Date
   createdAt: string; // Date
 }

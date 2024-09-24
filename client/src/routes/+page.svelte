@@ -7,6 +7,7 @@
   import { getHighlightJS, type HLJS } from '$lib/utils/highlight';
   import { formatLang } from '$lib/utils/language';
   import { addPiece } from '$lib/api/piece';
+  import { page } from '$app/stores';
 
   enum PastingStatus {
     Pending = 'Pending',
@@ -44,6 +45,9 @@
     '此非可点击按钮（// TODO 下个版本加个空判断）',
     '【AD】欢迎访问榜单合集大全：https://rank.ac',
   ];
+
+  let relLinksSearchParams = $page.url.searchParams.get('relLinks');
+  $: relLinks = relLinksSearchParams ? relLinksSearchParams.split(',') : [];
 
   let textareaRef: HTMLTextAreaElement;
   let userPieceConfig = userPieceStorage.get();
@@ -111,6 +115,7 @@
       code,
       lang: selectedLang === '__auto__' ? guessedLang : selectedLang,
       ttl: selectedTTL,
+      relLinks: relLinks.length > 0 ? relLinks : undefined,
     };
     userPieceStorage.set({ ttl: selectedTTL });
     userPieceConfig = userPieceStorage.get();
@@ -211,6 +216,21 @@
         </select>
       </label>
     </div>
+    {#if relLinks.length > 0}
+      <div class="flex w-full mt-2">
+        <!-- svelte-ignore a11y-label-has-associated-control -->
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Relative Links</span>
+          </div>
+          <ul class="text-sm text-gray-500 ps-3">
+            {#each relLinks as relLink}
+              <li>{relLink}</li>
+            {/each}
+          </ul>
+        </label>
+      </div>
+    {/if}
     <div class="mt-8 w-full select-none">
       {#if pastingStatus === PastingStatus.Pending || pastingStatus === PastingStatus.Error}
         <button class="btn btn-primary btn-block" class:btn-disabled={!validated} on:click={submit}>Paste!</button>

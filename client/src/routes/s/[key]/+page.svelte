@@ -18,6 +18,7 @@
   let copied = false;
 
   $: displayLang = supportedLanguages.find((l) => l.id === data?.lang)?.label || data?.lang;
+  $: relLinks = data?.relLinks ? data.relLinks : data?.rel ? [data.rel] : [];
 
   const fetchData = async (key: string) => {
     try {
@@ -83,15 +84,16 @@
         Expires at: {data.expireAt ? dayjs(data.expireAt).format('YYYY-MM-DD HH:mm:ss Z') : 'Never'}
       </div>
       <div class="text-sm opacity-65 select-none">Language: {displayLang}</div>
-      {#if data.rel}
+      {#if relLinks.length > 0}
         <div class="text-sm opacity-80 select-none max-w-full whitespace-nowrap flex items-center">
-          <span>→</span><a
-            role="button"
-            class="btn btn-ghost btn-sm flex-1 overflow-auto block content-center"
-            href={data.rel}
-            target="_blank"
-            rel="noopener noreferrer">{data.rel}</a
-          >
+          <span>→</span>
+          <span class="flex-1 overflow-auto block content-center">
+            {#each relLinks as relLink}
+              <a role="button" class="btn btn-ghost btn-sm" href={relLink} target="_blank" rel="noopener noreferrer"
+                >{relLink}</a
+              >
+            {/each}
+          </span>
         </div>
       {/if}
       {#if !copied}
