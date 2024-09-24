@@ -6,9 +6,9 @@ services:
       - 3031:3031
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3031/api/checkHealth"]
-      interval: 3s
+      interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 2
     restart: unless-stopped
     environment:
       REDIS_HOST: "redis"

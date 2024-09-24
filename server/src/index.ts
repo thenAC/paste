@@ -60,7 +60,8 @@ export default class OurApp extends App {
       try {
         await next();
       } finally {
-        ctx.info(`${ctx.status} - ua: ${ctx.get('User-Agent')} - referer: ${ctx.get('Referer')}`);
+        !ctx.path.endsWith('/api/checkHealth') &&
+          ctx.info(`${ctx.status} - ua: ${ctx.get('User-Agent')} - referer: ${ctx.get('Referer')}`);
       }
     });
   }
