@@ -21,6 +21,10 @@ export class AddPieceReqDTO {
   @IsIn(pieceConfig.ttlOptions.map((ttl) => ttl.value))
   ttl: number;
 
+  /**
+   * Relative link.
+   * @deprecated Use `relLinks` instead.
+   */
   @FromBody()
   @IsOptional()
   @IsString()
@@ -31,7 +35,7 @@ export class AddPieceReqDTO {
   @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  @IsUrl({ each: true })
+  @IsUrl(undefined, { each: true })
   relLinks?: string[];
 }
 
