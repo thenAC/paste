@@ -1,6 +1,6 @@
 const apps = [
   {
-    name: 'paste-server',
+    name: process.env.APP_NAME || 'paste-server',
     script: `./server/src/index.js`,
     log_date_format: 'YYYY-MM-DD HH:mm:ss',
     exec_mode: 'cluster',
@@ -17,7 +17,7 @@ const apps = [
     node_args: ['--unhandled-rejections=warn'],
   },
   process.env.USE_JOB === '1' && {
-    name: 'paste-job-clear',
+    name: process.env.APP_NAME_JOB_CLEAR || 'paste-job-clear',
     script: `./server/src/jobs/clear.js`,
     log_date_format: 'YYYY-MM-DD HH:mm:ss',
     exec_mode: 'fork',
