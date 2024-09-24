@@ -16,7 +16,7 @@ const apps = [
     },
     node_args: ['--unhandled-rejections=warn'],
   },
-  {
+  process.env.USE_JOB === '1' && {
     name: 'paste-job-clear',
     script: `./server/src/jobs/clear.js`,
     log_date_format: 'YYYY-MM-DD HH:mm:ss',
@@ -32,7 +32,7 @@ const apps = [
     },
     node_args: ['--unhandled-rejections=warn'],
   },
-];
+].filter(Boolean);
 
 module.exports = {
   apps,

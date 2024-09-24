@@ -22,6 +22,7 @@ services:
       COS_REGION: "your_region"
       HOST: "0.0.0.0"
       NODE_WORKERS: 1
+      USE_JOB: 1
     volumes:
       - /data/thenac-paste/server/logs:/root/.pm2/logs
     depends_on:
