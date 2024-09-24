@@ -6,6 +6,7 @@
   import type { Piece } from '$lib/interfaces/piece';
   import { supportedLanguages } from '$lib/configs/language';
   import { getHighlightJS, type HLJS } from '$lib/utils/highlight';
+  import MetaLink from '$lib/components/meta-link.svelte';
   import 'highlight.js/styles/github-dark.css';
 
   let key = $page.params.key;
@@ -89,9 +90,10 @@
           <span>→</span>
           <span class="flex-1 overflow-auto block content-center">
             {#each relLinks as relLink}
-              <a role="button" class="btn btn-ghost btn-sm" href={relLink} target="_blank" rel="noopener noreferrer"
+              <MetaLink relLink={relLink} />
+              <!-- <a role="button" class="btn btn-ghost btn-sm" href={relLink} target="_blank" rel="noopener noreferrer"
                 >{relLink}</a
-              >
+              > -->
             {/each}
           </span>
         </div>

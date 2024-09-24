@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { throttle } from 'lodash-es';
+  import { page } from '$app/stores';
   import pieceConfig from '../../../common/configs/piece.json';
   import { userPieceStorage } from '$lib/utils/storage';
   import { supportedLanguages } from '$lib/configs/language';
   import { getHighlightJS, type HLJS } from '$lib/utils/highlight';
   import { formatLang } from '$lib/utils/language';
   import { addPiece } from '$lib/api/piece';
-  import { page } from '$app/stores';
 
   enum PastingStatus {
     Pending = 'Pending',
