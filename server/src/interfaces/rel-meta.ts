@@ -22,7 +22,10 @@ export interface IRelMeta {
   id?: string;
 
   // The following fields are algorithm contest platform specific.
-  platform?: string;
+  platform: {
+    id: string;
+    label: string;
+  };
   problem?: {
     id?: string;
     title?: string;

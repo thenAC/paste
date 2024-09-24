@@ -75,7 +75,10 @@ export default class RelMetaDetectorSDUTOJ extends AbstractRelDetector {
       url: relLink,
       title: 'SDUTOJ',
       icon: this.icon,
-      platform: 'sdutoj',
+      platform: {
+        id: 'sdutoj',
+        label: 'SDUTOJ',
+      }
     };
     let res: IRelMeta | null = null;
     let match: RegExpMatchArray;
