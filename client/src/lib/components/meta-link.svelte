@@ -83,7 +83,7 @@
         <span
           class={`border-1 border-transparent rounded font-semibold px-2 py-1 mr-2 ${getSolutionResultClass(data.solution.result)}`}
           >{data.solution.result}</span
-        >{getLangLabel(data.solution.language)}
+        >
       </span>
     {:else if data.contest}
       <span class="font-light">{data.contest.id} - {data.contest.title}</span>
