@@ -29,7 +29,7 @@ export default class PieceController {
 
   @Post()
   @Contract(AddPieceReqDTO, AddPieceRespDTO)
-  @RateLimitIp(10, 60)
+  @RateLimitIp(20, 60)
   async addPiece(@Data() data: AddPieceReqDTO): Promise<AddPieceRespDTO> {
     const { code, lang, ttl, relLinks } = data;
     this.ctx.info('[piece.addPiece] Req:', {

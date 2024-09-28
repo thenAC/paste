@@ -1,5 +1,5 @@
 import { FromQuery } from 'bwcx-common';
-import { IsString, MaxLength, IsNotEmpty } from 'class-validator';
+import { IsString, MinLength, MaxLength, IsNotEmpty } from 'class-validator';
 import { IRelMeta } from '@server/interfaces/rel-meta';
 
 export class GetRelMetaReqDTO {
@@ -7,6 +7,7 @@ export class GetRelMetaReqDTO {
   @FromQuery()
   @IsString()
   @IsNotEmpty()
+  @MinLength(1)
   @MaxLength(2048)
   relLinks: string;
 }
