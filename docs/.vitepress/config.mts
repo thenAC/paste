@@ -29,6 +29,7 @@ export default defineConfig({
             { text: '概述', link: '/api/' },
             { text: 'Piece API', link: '/api/piece' },
             { text: 'Statistics API', link: '/api/statistics' },
+            { text: 'Misc API', link: '/api/misc' },
           ],
         },
       ],

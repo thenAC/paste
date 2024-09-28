@@ -15,7 +15,7 @@ outline: deep
 | `code` | string | 是   | 代码片段内容 | 长度 1-1048576                                                                               |
 | `lang` | string | 是   | 代码语言     | [可用枚举值](https://github.com/thenAC/paste/blob/master/client/src/lib/configs/language.ts) |
 | `ttl`  | number | 是   | 有效期       | [可用枚举值](https://github.com/thenAC/paste/blob/master/common/configs/piece.json)          |
-| `rel`  | string | 否   | 相关链接     |                                                                                              |
+| `relLinks`  | string[] | 否   | 相关链接     |                                                                                              |
 
 ### 响应结构
 
@@ -26,7 +26,7 @@ outline: deep
 
 ### 频率限制
 
-- IP 粒度：`10 次 / 分钟`
+- IP 粒度：`20 次 / 分钟`
 
 ## 获取代码片段
 
@@ -49,7 +49,7 @@ outline: deep
 | `key`       | string | 是           | 代码片段 key                         |
 | `code`      | string | 是           | 代码片段内容                         |
 | `lang`      | string | 是           | 代码语言                             |
-| `rel`       | string | 否           | 相关链接                             |
+| `relLinks`       | string[] | 否           | 相关链接                             |
 | `author`    | number | 是           | 作者，游客为 0                       |
 | `createdAt` | number | 是           | 创建时间戳                           |
 | `expireAt`  | number | 否           | 过期时间戳，永久有效期时不存在此字段 |
