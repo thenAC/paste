@@ -18,7 +18,7 @@ outline: deep
 
 | 字段名        | 类型      | 字段一定存在 | 描述                                                            |
 | ------------- | --------- | ------------ | --------------------------------------------------------------- |
-| `relMetaList` | `RelMeta` \| null | 是           | 链接解析的结果，与提交数组顺序对应。如无法解析，则对应项返回 null |
+| `relMetaList` | Array<`RelMeta` \| null> | 是           | 链接解析的结果，与提交数组顺序对应。如无法解析，则对应项返回 null |
 
 对于 `RelMeta` 响应结构，请参见 [此链接](https://github.com/thenAC/paste/blob/master/server/src/interfaces/rel-meta.ts)。
 
