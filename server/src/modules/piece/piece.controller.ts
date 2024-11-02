@@ -54,6 +54,10 @@ export default class PieceController {
 
     while (true) {
       key = this.miscUtils.randomAlphanumericString(Number(len));
+      const isAllNumberic = /^[0-9]+$/.test(key);
+      if (isAllNumberic) {
+        continue;
+      }
       const existed = await Piece.findOne({ key });
       if (!existed) {
         break;
