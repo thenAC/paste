@@ -26,7 +26,7 @@ outline: deep
 
 当前支持解析的链接来源：
 
-- [SDUTOJ](https://acm.sdut.edu.cn/onlinejudge3/)
+- [SDUTOJ](https://oj.sdutacm.cn/onlinejudge3/)
 
 ### 频率限制
 
