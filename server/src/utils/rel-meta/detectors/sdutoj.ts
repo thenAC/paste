@@ -41,7 +41,7 @@ const oj2SrkResultMap = {
 
 @Provide()
 export default class RelMetaDetectorSDUTOJ extends AbstractRelDetector {
-  private readonly icon = 'https://acm.sdut.edu.cn/onlinejudge3/favicon.ico';
+  private readonly icon = 'https://oj.sdutacm.cn/onlinejudge3/favicon.ico';
 
   private parseResponse(resp: any): any {
     if (resp.status >= 400) {
@@ -63,12 +63,12 @@ export default class RelMetaDetectorSDUTOJ extends AbstractRelDetector {
   public constructor() {
     super();
     this.initFetcher({
-      baseURL: 'https://acm.sdut.edu.cn/onlinejudge3/api',
+      baseURL: 'https://oj.sdutacm.cn/onlinejudge3/api',
     });
   }
 
   public async detect(relLink: string, url: URL): Promise<IRelMeta | null | false> {
-    if (url.host !== 'acm.sdut.edu.cn' || !url.pathname.startsWith('/onlinejudge3/')) {
+    if (url.host !== 'oj.sdutacm.cn' || !url.pathname.startsWith('/onlinejudge3/')) {
       return false;
     }
     let resBase: IRelMeta = {
