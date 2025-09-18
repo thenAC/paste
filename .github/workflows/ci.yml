@@ -4,6 +4,7 @@ on:
     branches:
       - master
     paths:
+      - 'Dockerfile'
       - 'server/**'
 jobs:
   build-and-push:
