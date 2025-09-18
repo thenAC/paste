@@ -41,7 +41,7 @@ const oj2SrkResultMap = {
 
 @Provide()
 export default class RelMetaDetectorSDUTOJ extends AbstractRelDetector {
-  private readonly icon = 'https://oj.sdutacm.cn/onlinejudge3/favicon.ico';
+  private readonly icon = 'https://oj.sdutacm.cn/dist/onlinejudge3/favicon.ico';
 
   private parseResponse(resp: any): any {
     if (resp.status >= 400) {
