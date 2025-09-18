@@ -1,9 +1,5 @@
 FROM algoux/nodebase:16
 
-RUN apt-get update
-RUN apt-get install -y telnet dnsutils
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /app/
 
 RUN npm install -g pnpm@8
