@@ -28,14 +28,14 @@
     <div class="flex-1">
       <a
         class="btn btn-ghost hover:bg-transparent text-xl border-0 border-b-2 border-slate-600 rounded-none px-1 ml-3 tooltip tooltip-bottom"
-        data-tip="Paste, then AC"
+        data-tip="Paste then AC"
         href="/"><img alt="logo" src={logo} class="h-8" /></a
       >
     </div>
     <div class="flex-none">
       <div class="hidden md:block">
         <a role="button" class="btn btn-ghost" href="https://github.com/thenAC" target="_blank">GitHub</a>
-        <a role="button" class="btn btn-ghost" href="https://docs.of.paste.then.ac" target="_blank">Docs</a>
+        <a role="button" class="btn btn-ghost" href="https://docs.of.paste.then.ac" target="_blank">使用文档</a>
       </div>
       <div class="md:hidden">
         <div class="dropdown dropdown-end">
@@ -52,7 +52,7 @@
           </div>
           <ul tabindex="-1" class="menu dropdown-content bg-base-200 rounded-box z-[1] mt-2 w-24 p-2 shadow">
             <li><a href="https://github.com/thenAC" target="_blank">GitHub</a></li>
-            <li><a href="https://docs.of.paste.then.ac" target="_blank">Docs</a></li>
+            <li><a href="https://docs.of.paste.then.ac" target="_blank">使用文档</a></li>
           </ul>
         </div>
       </div>

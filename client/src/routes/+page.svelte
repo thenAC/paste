@@ -20,8 +20,8 @@
 
   const FIRST_ROUND_EMPTY_PROMPT_PICKED_NUM = 5;
   const emptyCodePrompts = [
-    'You need to input something first!',
-    'You need to input your code first!',
+    '你需要先输入点什么！',
+    '你需要先粘贴代码！',
     'Ahh... Please check the larest input field!',
     'You must have forgotten something...',
     '嗯？请先输入点什么...',
@@ -47,7 +47,8 @@
   ];
 
   let relLinksSearchParams = $page.url.searchParams.get('relLinks');
-  $: relLinks = relLinksSearchParams ? relLinksSearchParams.split(',') : [];
+  let relLinksStr = relLinksSearchParams ? relLinksSearchParams.split(',').join(' ') : '';
+  $: relLinks = relLinksStr.split(' ').filter((link) => link.trim().length > 0);
 
   let textareaRef: HTMLTextAreaElement;
   let userPieceConfig = userPieceStorage.get();
@@ -84,6 +85,11 @@
     selectedTTL = +event.target.value;
   };
 
+  const handleRelLinksChange = (event: Event) => {
+    // @ts-ignore
+    relLinksStr = event.target.value;
+  };
+
   const guessLang = () => {
     if (!code) {
       guessedLang = '';
@@ -99,7 +105,22 @@
     }
   };
 
+  const isRelLinksValid = () => {
+    const checkURL = (url: string) => {
+      try {
+        const u = new URL(url);
+        return (u.protocol === 'http:' || u.protocol === 'https:') && !!u.hostname;
+      } catch {
+        return false;
+      }
+    };
+    return relLinks.every((link) => checkURL(link));
+  };
+
   const submit = async () => {
+    promptMessage = '';
+    errorMessage = '';
+
     if (!code) {
       const picked = Math.floor(
         Math.random() * (clickEmptySubmitCount ? emptyCodePrompts.length : FIRST_ROUND_EMPTY_PROMPT_PICKED_NUM),
@@ -109,8 +130,12 @@
       clickEmptySubmitCount++;
       return;
     }
-    promptMessage = '';
-    errorMessage = '';
+
+    if (!isRelLinksValid()) {
+      errorMessage = '确保每个相关链接均为有效的 URL 并以空格分隔';
+      return;
+    }
+
     const data = {
       code,
       lang: selectedLang === '__auto__' ? guessedLang : selectedLang,
@@ -126,7 +151,7 @@
       result = { key: res.key };
     } catch (e: any) {
       console.error(`Submit failed:`, e);
-      errorMessage = `Failed to paste: ${e.message}`;
+      errorMessage = `贴代码失败：${e.message}`;
       pastingStatus = PastingStatus.Error;
     }
   };
@@ -139,7 +164,7 @@
       pastingStatus = PastingStatus.Copied;
       navigator.clipboard.writeText(`${window.location.origin}/s/${result!.key}`);
     } catch (e) {
-      errorMessage = 'Failed to copy URL';
+      errorMessage = '拷贝链接失败';
     } finally {
       copied = true;
       setTimeout(() => {
@@ -182,7 +207,7 @@
       <textarea
         class="textarea textarea-bordered {code.length > pieceConfig.maxCodeLength ? 'textarea-error' : ''}"
         rows="8"
-        placeholder="Input your code here"
+        placeholder="输入或粘贴代码到这里..."
         on:input={handleCodeChange}
         bind:this={textareaRef}
       ></textarea>
@@ -196,10 +221,10 @@
     <div class="flex w-full justify-between mt-2">
       <label class="form-control w-full mr-1">
         <div class="label">
-          <span class="label-text">Language</span>
+          <span class="label-text">语言</span>
         </div>
         <select class="select select-bordered pe-0" on:change={handleLangChange}>
-          <option value="__auto__" selected>{guessedLang ? `Auto (${formatLang(guessedLang)})` : 'Auto Detect'}</option>
+          <option value="__auto__" selected>{guessedLang ? `自动 (${formatLang(guessedLang)})` : '自动检测'}</option>
           {#each supportedLanguages as lang}
             <option value={lang.id} selected={selectedLang === lang.id}>{lang.label}</option>
           {/each}
@@ -207,7 +232,7 @@
       </label>
       <label class="form-control w-full ml-1">
         <div class="label">
-          <span class="label-text">Time to live</span>
+          <span class="label-text">有效期</span>
         </div>
         <select class="select select-bordered pe-0" on:change={handleTTLChange}>
           {#each pieceConfig.ttlOptions as ttlOption}
@@ -216,35 +241,34 @@
         </select>
       </label>
     </div>
-    {#if relLinks.length > 0}
-      <div class="flex w-full mt-2">
-        <!-- svelte-ignore a11y-label-has-associated-control -->
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Relative Links</span>
-          </div>
-          <ul class="text-sm text-gray-500 ps-3">
-            {#each relLinks as relLink}
-              <li>{relLink}</li>
-            {/each}
-          </ul>
-        </label>
+    <label class="form-control w-full mt-2">
+      <div class="label justify-start gap-2">
+        <span class="label-text">附加与此代码相关的网页链接</span>
+        <span class="badge badge-primary badge-outline text-xs">可选</span>
       </div>
-    {/if}
+      <input
+        type="text"
+        placeholder=""
+        class="input input-bordered w-full"
+        on:input={handleRelLinksChange}
+        bind:value={relLinksStr}
+      />
+    </label>
     <div class="mt-8 w-full select-none">
       {#if pastingStatus === PastingStatus.Pending || pastingStatus === PastingStatus.Error}
-        <button class="btn btn-primary btn-block" class:btn-disabled={!validated} on:click={submit}>Paste!</button>
+        <button class="btn btn-primary btn-block" class:btn-disabled={!validated} on:click={submit}>粘贴并分享！</button
+        >
       {:else if pastingStatus === PastingStatus.Loading}
         <button class="btn btn-primary btn-block no-animation opacity-65">
-          <span class="loading loading-spinner"></span> Pasting
+          <span class="loading loading-spinner"></span> 正在粘贴...
         </button>
       {:else if pastingStatus === PastingStatus.Success}
-        <button class="btn btn-success btn-block" on:click={copyURL}>Copy URL!</button>
+        <button class="btn btn-success btn-block" on:click={copyURL}>拷贝链接！</button>
       {:else if pastingStatus === PastingStatus.Copied}
-        <button class="btn btn-success btn-block no-animation">Copied!</button>
+        <button class="btn btn-success btn-block no-animation">已拷贝！</button>
       {/if}
       {#if pastingStatus === PastingStatus.ReadyToReset}
-        <button class="btn btn-neutral btn-block" on:click={reset}>Reset and paste another!</button>
+        <button class="btn btn-neutral btn-block" on:click={reset}>重置并粘贴下一个！</button>
       {/if}
       {#if promptMessage}
         <div class="text-accent mt-2 select-text">{promptMessage}</div>
@@ -268,7 +292,7 @@
             />
           </svg>
           <span
-            >Your new piece: <a href={`/s/${result.key}`} class="link link-primary select-text"
+            >你的代码片段：<a href={`/s/${result.key}`} class="link link-primary select-text"
               >{location.origin}/s/<code>{result.key}</code></a
             ></span
           >

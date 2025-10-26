@@ -49,7 +49,7 @@
     try {
       navigator.clipboard.writeText(data!.code);
     } catch (e) {
-      errorMessage = 'Failed to copy code';
+      errorMessage = '无法拷贝代码';
     } finally {
       copied = true;
       setTimeout(() => {
@@ -72,19 +72,19 @@
 </script>
 
 <div class="flex flex-col items-center justify-center px-4 pt-16 md:pt-24 xl:pt-32 pb-16">
-  <h2 class="select-none">Piece<code class="kbd kbd-sm ml-2 select-text">{key}</code></h2>
+  <h2 class="select-none">代码片段<code class="kbd kbd-sm ml-2 select-text">{key}</code></h2>
   {#if isLoading}
     <div class="loading loading-spinner loading-lg mt-4"></div>
   {/if}
   {#if data}
     <div class="mt-4 w-full flex flex-col items-center justify-center">
       <div class="text-sm opacity-65 select-none">
-        Created at: {dayjs(data.createdAt).format('YYYY-MM-DD HH:mm:ss Z')}
+        创建时间：{dayjs(data.createdAt).format('YYYY-MM-DD HH:mm:ss Z')}
       </div>
       <div class="text-sm opacity-65 select-none">
-        Expires at: {data.expireAt ? dayjs(data.expireAt).format('YYYY-MM-DD HH:mm:ss Z') : 'Never'}
+        失效时间：{data.expireAt ? dayjs(data.expireAt).format('YYYY-MM-DD HH:mm:ss Z') : '永不'}
       </div>
-      <div class="text-sm opacity-65 select-none">Language: {displayLang}</div>
+      <div class="text-sm opacity-65 select-none">语言：{displayLang}</div>
       {#if relLinks.length > 0}
         <div class="text-sm opacity-80 select-none max-w-full whitespace-nowrap flex items-center">
           <span>→</span>
@@ -99,9 +99,9 @@
         </div>
       {/if}
       {#if !copied}
-        <button class="btn btn-success mt-4" on:click={copyCode}>Copy!</button>
+        <button class="btn btn-success mt-4" on:click={copyCode}>拷贝！</button>
       {:else}
-        <button class="btn btn-success mt-4 no-animation">Copied!</button>
+        <button class="btn btn-success mt-4 no-animation">已拷贝！</button>
       {/if}
       <div class="mockup-code mt-4 w-full lg:w-3/4 2xl:w-2/3 custom-code">
         <div class="flex flex-row">
