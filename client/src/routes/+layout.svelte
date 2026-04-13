@@ -76,11 +76,11 @@
       </span>
     </div>
     <div class="flex items-center">
-      © {new Date().getFullYear()} · Developed by
+      © 2024-{new Date().getFullYear()} · Developed by
       <a
         role="button"
         class="btn btn-sm btn-ghost px-0.5 mx-0.5"
-        href="https://dreamer.blue"
+        href="https://dreamer.blue/?utm_source=paste_then_ac&utm_medium=referral&utm_campaign=footer_link"
         target="_blank"
         title="bLue"
       >
