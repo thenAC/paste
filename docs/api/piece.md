@@ -34,7 +34,11 @@ outline: deep
 代码片段存储在 CDN 并在多个加速节点上发布，需要从特定 URL 获取，而非 API 接口。
 :::
 
-`GET https://thenac.cdn.blueverse.cc/paste/{key}.json`
+:::warning
+旧的 CDN URL（`https://thenac.cdn.blueverse.cc/paste/{key}.json`）将于 2026-10-15 00:00:00 UTC+8 停止服务，请尽快迁移到新的 URL。
+:::
+
+`GET https://cdn.thenac.algoux.cn/paste/{key}.json`
 
 ### 请求参数
 
